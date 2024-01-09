@@ -1,46 +1,82 @@
-# Getting Started with Create React App
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/othneildrew/Best-README-Template">
+  </a>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+  <h3 align="center">helper_collection</h3>
 
-## Available Scripts
+  <p align="center">
+    React hook을 하면서 자주 사용하게 되는 hook과 util을 모아서 사용해보자.
+    <br />
+    <!-- <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a> -->
+    <!-- <br /> -->
+    <br />
+    <!-- <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    ·
+    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a> -->
+  </p>
+</div>
 
-In the project directory, you can run:
+<!-- TABLE OF CONTENTS -->
+<!-- <details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details> -->
 
-### `npm start`
+<!-- ABOUT THE PROJECT -->
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## About The Project
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+리엑트를 사용하면서, 프론트엔드 개발에 component의 재사용 뿐만 아니라 hook과 util의 재사용 역시 중요하다는 사실을 깨닫게 됩니다.
+<br/>
+불필요한 작업을 계속 반복하지 않을 수 있도록 기록의 차원에서 기존에 사용했던 util과 hook들을 정돈하고, 이것을 모듈화시켜서 내보내는 것을 목표로 코드들을 저장 및 업데이트하는 장소입니다.
 
-### `npm test`
+추후 Rollup을 통해 번들링을 한 후 해당 코드들을 배포하여 사용할 수 있도록 일반화 및 최신화를 진행할 예정입니다.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Roadmap
 
-### `npm run build`
+- base : src
+- utils : 유틸함수 저장소
+- hooks : 리엑트 훅 저장소
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<!--
+<p align="right">(<a href="#readme-top">back to top</a>)</p> -->
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<!-- CONTRIBUTING -->
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<!-- <p align="right">(<a href="#readme-top">back to top</a>)</p> -->
 
-### `npm run eject`
+<!-- LICENSE -->
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<!-- <p align="right">(<a href="#readme-top">back to top</a>)</p> -->
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<!-- CONTACT -->
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Contact
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Anderson - [velog](https://velog.io/@chltjdrhd777/posts) - chltjdrhd777@gmail.com
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+<!-- <p align="right">(<a href="#readme-top">back to top</a>)</p> -->
