@@ -54,8 +54,6 @@ export async function middleware(request: NextRequest) {
       const newAccessToken = await restoreAccessToken(`${TOKEN.ZECO_REFRESH_TOKEN}=${refreshToken?.value}`);
       const isRefreshTokenExpired = newAccessToken === null;
 
-      console.log('isRefrechedToken expired', isRefreshTokenExpired);
-
       if (isRefreshTokenExpired) {
         return clearTokensAndRedirectToLogin(request);
       } else {
@@ -134,7 +132,7 @@ const clearTokensAndRedirectToLogin = (request: NextRequest) => {
   const headers = new Headers(request.headers);
   const cookiesToDelete = [TOKEN.ZECO_TOKEN, TOKEN.ZECO_REFRESH_TOKEN];
 
-  cookiesToDelete.forEach((cookie) => headers.set('Set-Cookie', `${cookie}=; Max-Age=0; Path=/;`));
+  cookiesToDelete.forEach((cookie) => headers.append('Set-Cookie', `${cookie}=; Max-Age=0; Path=/;`));
 
   return NextResponse.redirect(new URL(URL_ROUTES.LOGIN, request.url), {
     headers,
