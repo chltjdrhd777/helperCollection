@@ -1,0 +1,42 @@
+name: Continuous Integration to Feature Branch
+
+on:
+  # trigger for fork branch collaborator
+  # read : https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#pull_request_target
+  pull_request_target:
+    branches:
+      - feature
+    types: [closed]
+
+jobs:
+  CI:
+    runs-on: self-hosted
+    # if: github.event.pull_request.merged == true
+    env:
+      BRANCH: feature
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.BRANCH }}
+          token: ${{ secrets.ACCESS_TOKEN }}
+
+      - name: Set node environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.11.1 # see .nvmrc
+
+      - name: Caching Primes # for this case, node_modules
+        id: cache-primes
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: npm-packages-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install dependencies if no cache
+        if: steps.cache-primes.outputs.cache-hit != 'true'
+        run: npm install
+
+      - run: npm run check:lint
+      - run: npm run check:type
+      - run: npm run build

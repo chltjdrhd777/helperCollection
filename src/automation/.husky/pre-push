@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+
+#### clean issue branch script와의 충돌로 인해 우선은 막아두었음.
+#### 추후 방법을 찾게 되면 다시 열 예정
+
+# prevent push action directly towards feature
+
+# protected_branch="feature"
+# current_branch=$(git rev-parse --abbrev-ref HEAD)
+
+# if [ $current_branch = $protected_branch ]; then
+#     echo "🚫 Don't push directly to ${protected_branch}. Please create a pull request"
+#     exit 1
+# fi
+
+# exit 0

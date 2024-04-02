@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+# the lint process includes prettier
+check_lint='yarn run check:lint'
+check_type='yarn run check:type'
+
+${check_lint}
+${check_type}
+
+
+

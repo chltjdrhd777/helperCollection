@@ -1,0 +1,15 @@
+version: '1.0'
+services:
+  # frontend service ###################################################
+  frontend:
+    image: bems_frontend # image name
+    container_name: bems_frontend # container name
+    env_file:
+      - .env
+    build:
+      context: . # resource context path that a dockerfile exists
+      dockerfile: Dockerfile # a target dockerfile name to build
+    ports:
+      - target: ${PORT} # an app port for inbound
+        published: ${PORT} # an expose port to outside
+  # other services ####################################################
