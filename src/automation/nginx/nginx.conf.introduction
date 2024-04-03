@@ -5,6 +5,68 @@
 ## 개념 레퍼런스 강의 : https://www.youtube.com/watch?v=9t9Mp0BGnyI
 
 ## nginx의 기본적인 statement 정의는 simple directive(끝이 ;로 끝나는 한 문장) 과 block directive({} 안에 들어가있는 문장) 으로 나뉜다.
+## nginx option 설명들 (레퍼런스 : https://blog.dglee.co.kr/27)
+
+############ CORE #######################
+user: 
+nginx process가 어느 사용자/그룹으로 동작될 것인지에 대한 설정.(root로 하면 모든 권한을 갖게 되므로 주의)
+
+worker_processes: 
+발생되는 이벤트를 처리하는 작업자 프로세스 수. (어려우면 auto로. 보통 CPU 코어수로 정함)
+
+error_log: 
+nginx 에러로그를 저장하는 파일명 지정
+
+pid: 
+nginx 실행할 때 process id 저장하는 경로 지정
+
+########## EVENT BLOCK ######################
+worker_connections:
+하나의 worker process가 동시에 처리할 수 있는 커넥션 수. (예를 들어 worker_processes 가 2인데, worker_connections가 1024면 2048개의 커넥션을 처리할 수 있음. 클라이언트 커넥션수 + 프록시 대상 커넥션수)
+
+########## HTTP ###########################
+include:
+특정 nginx 설정을 포함시킴. 
+
+default_type:
+기본 Content_Type을 지정함.
+
+log_format:
+작성되는 로그의 포맷 (포맷형식 주소 : https://nginx.org/en/docs/varindex.html)
+
+access_log:
+클라이언트가 log에 acess하기 위한 경로
+
+sendfile:
+리눅스 서버의 sendfile 시스템콜의 사용유무 설정(설정시 커널에 최적화 알고리즘을 통해 파일전송 속도가 빨라지며 메모리 사용 감소)
+
+keepalive_timeout:
+클라이언트의 접속 유지시간 지정.
+
+tcp_nopush:
+TCP 연결을 맺은 클라이언트에게 데이터를 즉시 보낼지, 버퍼를 두고 보낼지에 대한 설정. (on이면 즉시 보내기인데, 보안적 이슈로 권장되지 않음. 보안제외 즉각적인 전송이 더 중요하면 성능적 이점)
+
+########## SERVER ##############################
+listen:
+접근 포트의 지정 (설정하여 server 블록에서 처리할 수 있게 함)
+
+server_name:
+호스트 네임 지정 (배포환경에 주소에 맞춰 설정해야 함. 해당 호스트네임으로 요청이 들어오는 것을 nginx가 프록시로 중간처리함)
+
+access_log:
+HTTP쪽과다름(저기는 접근). 로그 저장위치 설정함
+
+error_page:
+클라이언트의 HTTP요청이 error_code_list에 설정한 에러일 경우, 지정된 error_oage를 전송함.
+(단, WAS에서 전달되는 페이지가 없어야 함. 예를 들어, www.example.com/nopage로 접근했을 때 해당 리소스가 없는 상태고 응답코드가 404인 경우에는 지정된 nginx의 페이지가 전달된다)
+
+location:
+end-path처럼 경로별로 어떤 리소스를 전달할 것인지에 대해서 설정하는 부분.
+
+
+
+
+
 
 http {
     server { # 전달받은 요청에 대해서 어떤 서버로 전달할지 정의내리는 부분
