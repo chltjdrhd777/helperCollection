@@ -4,6 +4,7 @@
 ## 정리 레퍼런스 주소 : https://brunch.co.kr/@springboot/21, https://gonna-be.tistory.com/20
 ## 개념 레퍼런스 강의 : https://www.youtube.com/watch?v=9t9Mp0BGnyI
 ## nginx ec2 환경 적용 절차 정리 레퍼런스 : https://develop-const.tistory.com/42
+## 로컬머신에서 https 적용해보기(mkcert) 레퍼런스 : https://weezip.treefeely.com/post/nginx-local-https-ssl
 
 ## nginx의 기본적인 statement 정의는 simple directive(끝이 ;로 끝나는 한 문장) 과 block directive({} 안에 들어가있는 문장) 으로 나뉜다.
 ## nginx option 설명들 (레퍼런스 : https://blog.dglee.co.kr/27)
