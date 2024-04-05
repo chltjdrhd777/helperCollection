@@ -1,0 +1,50 @@
+name: Continuous Deployment to Development Branch
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [closed]
+
+jobs:
+  CD:
+    runs-on: self-hosted
+    if: github.event.pull_request.merged == true
+    env:
+      BRANCH: main
+      EC2_PEM: ${{ secrets.EC2_PEM }}
+      USERNAME: ubuntu
+      PUBLIC_DNS: ec2-3-38-103-183.ap-northeast-2.compute.amazonaws.com
+      ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+      PROJECT_PATH: ~/ems-admin
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.BRANCH }}
+          token: ${{ env.ACCESS_TOKEN }}
+
+      - name: Create key.pem
+        run: |
+          echo "${{ env.EC2_PEM }}" > key.pem
+          chmod 400 key.pem
+
+      - name: SSH into EC2 and run commands
+        run: |
+          ## 1. Access to EC2 
+          echo "access to EC2"
+          ssh -i key.pem ${{ env.USERNAME }}@${{ env.PUBLIC_DNS }} << 'EOF'
+
+          ## 2. run new project using pm2
+          echo "run new project"
+
+          echo "add path"
+          export PATH=$PATH:/home/ubuntu/.nvm/versions/node/v20.12.0/bin
+          cd ${{ env.PROJECT_PATH }}
+          git pull
+          npm run build
+          pm2 kill
+          pm2 start --name blue npm -- run start:blue
+
+          echo "success for deployment"
+          EOF

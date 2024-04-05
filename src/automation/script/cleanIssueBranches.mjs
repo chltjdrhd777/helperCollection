@@ -4,7 +4,9 @@ import ora from 'ora';
 // this process will clean all redundant issue branches from local to remote
 (async () => {
 	const spinner = ora('please wait for cleaning').start();
-	//0. checkout
+
+	//0. branch remote update and checkout
+	await executeCommand('git fetch --prune origin');
 	await executeCommand('git checkout feature');
 
 	//1. delete all remote issue branches
