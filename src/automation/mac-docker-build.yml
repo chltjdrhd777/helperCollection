@@ -1,0 +1,38 @@
+# Docker 레지스트리 구성 파일 생성
+# sudo mkdir -p /etc/docker/registry
+# sudo nano /etc/docker/registry/config.yml
+
+version: 0.1
+log:
+  level: debug
+  formatter: text
+  fields:
+    service: registry
+storage:
+  cache:
+    blobdescriptor: inmemory
+  filesystem:
+    rootdirectory: /var/lib/registry
+http:
+  addr: :5000
+  headers:
+    X-Content-Type-Options: [nosniff]
+# Docker registry EC2 환경에서 실행해놓기
+# docker run -d -p 5000:5000 --restart=always --name registry -v /etc/docker/registry/config.yml:/etc/docker/registry/config.yml -v /var/lib/registry:/var/lib/registry registry:latest
+
+# 인바운드 아웃바운드 5000번 열기
+
+# 로컬에서 Docker 이미지 빌드
+# docker build -t my_image .
+
+# Docker 이미지 압축
+# docker save my_image | gzip > my_image.tar.gz
+
+# SCP를 사용하여 EC2로 파일 전송
+# scp -i "REABLE_BEMS_Key.pem" my_image.tar.gz ubuntu@ec2-3-38-245-191.ap-northeast-2.compute.amazonaws.com:/home/ubuntu
+
+# EC2에서 Docker 이미지 로드
+# ssh -i "REABLE_BEMS_Key.pem" ubuntu@ec2-3-38-245-191.ap-northeast-2.compute.amazonaws.com "gunzip -c /home/ubuntu/my_image.tar.gz | docker load"
+
+# Docker 이미지 실행
+# ssh -i "REABLE_BEMS_Key.pem" ubuntu@ec2-3-38-245-191.ap-northeast-2.compute.amazonaws.com "docker run -d --name my_container my_image"
