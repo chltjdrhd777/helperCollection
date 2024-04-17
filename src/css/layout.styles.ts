@@ -8,29 +8,27 @@ const center = css`
   align-items: center;
 `;
 
-export const LayoutWrapper = styled.div`
-  & {
-    // css vars
-    --header-height: 6rem;
+const getHeaderHeight = (height: string | number, noHeader?: boolean) =>
+  noHeader ? '0rem' : typeof height === 'number' ? `${height}rem` : height;
+
+export const LayoutWrapper = styled.div<{ noHeader?: boolean }>`
+  ${({ noHeader }) => css`
+    --header-height: ${getHeaderHeight(6, noHeader)};
 
     @media screen and (min-width: 768px) {
-      --header-height: 8rem;
+      --header-height: ${getHeaderHeight(8, noHeader)};
     }
 
     @media screen and (min-width: 992px) {
-      --header-height: 10rem;
+      --header-height: ${getHeaderHeight(10, noHeader)};
     }
-  }
+  `}
 
   min-width: 100vw;
   min-height: 100vh;
-  background-color: pink;
-`;
-
-export const Main = styled.main`
   width: 100%;
-  height: calc(100vh - var(--header-height));
-  background-color: lightblue;
+  height: 100%;
+  background-color: pink;
 `;
 
 export const Header = styled.header`
@@ -57,4 +55,10 @@ export const Aside = styled.aside`
   @media screen and (max-width:458px) {
     display: none;
   }
+`;
+
+export const Main = styled.main`
+  width: 100%;
+  height: calc(100vh - var(--header-height));
+  background-color: lightblue;
 `;
