@@ -1,0 +1,9 @@
+import getTargetRows from './getTargetRows';
+
+//types ///////////////////////////////////////////////////////////////////////////////
+interface GetRowElementParams {
+  targetRows: ReturnType<typeof getTargetRows>;
+}
+//types ///////////////////////////////////////////////////////////////////////////////
+
+export default function getRowElement({ targetRows }: GetRowElementParams) {}
